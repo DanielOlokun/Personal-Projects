@@ -1,0 +1,36 @@
+<!--html page for previous orders that will have link for a new order / logout if needed -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <title>Previous Orders</title>
+</head>
+<body>
+
+    <div class="container">
+    <form action="{% url 'previous-orders' %}" method="POST">
+        {% csrf_token %}
+        <h1>Previous Orders</h1>
+        
+        {% if orders %}
+            <ul>
+                {% for order in orders %}
+                    <li>{{ order }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No previous orders found.</p>
+        {% endif %}
+        
+        <a href="{% url 'make_pizza' %}" class="order-link">Make a New Pizza</a>
+        <br>
+        <br>
+        <a href="{% url 'index' %}" class="btn">Log Out</a>
+    </div>
+
+</body>
+</html>

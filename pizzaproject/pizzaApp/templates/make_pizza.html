@@ -1,0 +1,72 @@
+<!-- MAKE A NEW PIZZA PAGE -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <title>Make a New Pizza</title>
+</head>
+
+<body>
+    <div class="container">
+
+    <form action="{% url 'make_pizza' %}" method="POST">
+        {% csrf_token %}
+        <h1>Build Your Own Pizza 🍕</h1>
+        <label for="size">Choose Pizza Size:</label>
+        <select name="size" id="size">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+        <br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" value="1" min="1">
+
+        <br>
+        <br>
+        <br>
+
+        <label>Choose Your Base:</label><br>
+        <input type="radio" name="base" value="BBQ"> BBQ <br>
+        <input type="radio" name="base" value="TOMATO"> Tomato <br>
+        <input type="radio" name="base" value="GARLIC"> Garlic <br>
+        <br>
+        <br>
+        <br>
+        <label>Choose Your Cheese:</label><br>
+        <input type="checkbox" name="cheese" value="mozzarella"> Mozzarella <br>
+        <input type="checkbox" name="cheese" value="Low Fat Mozzarella"> Low Fat Mozzarella <br>
+        <input type="checkbox" name="cheese" value="American-style"> American-style<br>
+        <input type="checkbox" name="cheese" value="Low Fat American-style">Low Fat American-style<br>
+        <input type="checkbox" name="cheese" value="vegan">Vegan Cheese<br>
+        <br>
+        <br>
+        <br>
+        <label>Choose Your Toppings:</label><br>
+        <input type="checkbox" name="toppings" value="pepperoni"> Pepperoni <br>
+        <input type="checkbox" name="toppings" value="mushrooms"> Mushrooms <br>
+        <input type="checkbox" name="toppings" value="olives"> Olives <br>
+        <input type="checkbox" name="toppings" value="onions"> Onions <br>
+        <input type="checkbox" name="toppings" value="sausage"> Sausage <br>
+        <input type="checkbox" name="toppings" value="groundbeef"> Ground beef <br>
+        <input type="checkbox" name="toppings" value="cajun chicken"> Cajun Chicken <br>
+        <input type="checkbox" name="toppings" value="pineapple"> Pineapple <br>
+        <input type="checkbox" name="toppings" value="peppers"> Peppers <br>
+        <input type="checkbox" name="toppings" value="ham"> Ham <br>
+
+
+        <br>
+        <button type="submit" class="btn">Submit Order</button>
+        <br>
+        <a href="{% url 'previous-orders' %}" class="home-link">Back to Previous Orders</a>
+        </form>
+        <br>
+        <br>
+    </div>
+</body>
+</html>

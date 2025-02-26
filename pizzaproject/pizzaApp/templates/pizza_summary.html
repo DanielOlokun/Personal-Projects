@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <title>Your Pizza Summary</title>
+</head>
+<body>
+    <div class="container2">
+    <form action="{% url 'pizza_summary' %}" method="POST">
+        {% csrf_token %}
+        <h1>Your Pizza Order 🍕</h1>
+        
+        <p><strong>Size:</strong></p>
+        <p>{{ size }}</p>
+          
+        <br>
+        <p><strong>Quantity:</strong></p>
+        <p>{{ quantity }}</p>
+            
+        <br>
+        <p><strong>Base:</strong></p>
+        <p>{{ base }}</p>
+            
+        <br>
+        <p><strong>Cheese:</strong></p>
+        <ul>
+            {% for cheese_type in cheese %}
+                <li>{{ cheese_type }}</li>
+            {% endfor %}
+        </ul>
+          
+        <br>
+        <p><strong>Toppings:</strong></p>
+        <ul>
+            {% for topping in toppings %}
+                <li>{{ topping }}</li>
+            {% endfor %}
+        </ul>
+    
+        <br>
+        <a href="{% url 'payment' %}" class="btn">Proceed to Payment</a>
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'make_pizza' %}" class="home-link">Modify Your Order</a>
+    </form>
+    </div>
+</body>
+</html>
